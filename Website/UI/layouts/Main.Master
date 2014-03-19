@@ -1,0 +1,44 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" 
+    CodeFile="Main.master.cs" 
+    Inherits="NUnitTesting.WebApp.UI.layouts.Main" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+
+    <script src="/UI/js/jquery-1.11.0.min.js"></script>
+    
+    <link href="/UI/css/style.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="Head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="wrapper">
+        <div class="innerwrapper">
+            <div class="logo">
+                <img src="/UI/images/teststar.png" />
+                <div class="logoTitle">Test Star<span>The most powerful Web and Unit tester in your star system</span></div>
+            </div>
+            <nav>
+                <ul>
+                    <asp:Repeater ID="rptNav" runat="server">
+                        <ItemTemplate>
+                            <li>
+                                <%# GetLink((KeyValuePair<string,string>)Container.DataItem) %>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ul>
+            </nav>
+            <asp:ContentPlaceHolder ID="PageContent" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    </form>
+    <div class="cover"></div>
+</body>
+</html>
