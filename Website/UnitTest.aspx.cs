@@ -128,15 +128,15 @@ namespace NUnitTesting.WebApp {
 		#region ITestHandler Events
 
 		public void OnError(TestMethod tm, TestResult tr) {
-			Results(tm, "Has Errors", tr.Message);
+			Results(tm, "Has Errors", tr.Message, "err");
 		}
 
 		public void OnFailure(TestMethod tm, TestResult tr) {
-			Results(tm, "Failed", tr.Message);
+			Results(tm, "Failed", tr.Message, "fail");
 		}
 
 		public void OnSuccess(TestMethod tm, TestResult tr) {
-			Results(tm, "Succeeded", string.Empty);
+			Results(tm, "Succeeded", string.Empty, "pass");
 		}
 
 		#endregion ITestHandler Events
@@ -148,9 +148,9 @@ namespace NUnitTesting.WebApp {
 		/// <summary>
 		/// writes message to the results window
 		/// </summary>
-		protected void Results(TestMethod tm, string name, string value) {
+		protected void Results(TestMethod tm, string name, string value, string type) {
 			StringBuilder sb = new StringBuilder();
-			sb.AppendFormat("<div class='result {0}'>", (ResultFlag) ? "even" : "odd").AppendLine();
+			sb.AppendFormat("<div class='result {0} {1}'>", (ResultFlag) ? "even" : "odd", type).AppendLine();
 			if (tm != null) {
 				sb.AppendFormat("<div class='rMethod'>{0} -</div>", TestUtility.GetClassName(tm.MethodName)).AppendLine();
 			}

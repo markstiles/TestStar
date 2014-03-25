@@ -215,19 +215,19 @@ namespace NUnitTesting.WebApp {
 		#region ITestHandler Events
 
 		public void OnError(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr){
-			Results(ts, te, tm, "Has Errors", tr.Message);
+			Results(ts, te, tm, "Has Errors", tr.Message, "err");
 		}
 
 		public void OnFailure(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr) {
-			Results(ts, te, tm, "Failed", tr.Message);
+			Results(ts, te, tm, "Failed", tr.Message, "fail");
 		}
 
 		public void OnSuccess(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr) {
-			Results(ts, te, tm, "Succeeded", string.Empty);
+			Results(ts, te, tm, "Succeeded", string.Empty, "pass");
 		}
 
 		public void OnSkipped(TestMethod tm, TestEnvironment te, TestSite ts) {
-			Results(ts, te, null, "Skipped", string.Format("{0} doesn't support the {1} environment", ts.Name, te.Name));
+			Results(ts, te, null, "Skipped", string.Format("{0} doesn't support the {1} environment", ts.Name, te.Name), "skip");
 		}
 
 		#endregion ITestHandler Events
@@ -239,9 +239,9 @@ namespace NUnitTesting.WebApp {
 		/// <summary>
 		/// writes message to the results window
 		/// </summary>
-		protected void Results(TestSite ts, TestEnvironment te, TestMethod tm, string name, string value) {
+		protected void Results(TestSite ts, TestEnvironment te, TestMethod tm, string name, string value, string type) {
 			StringBuilder sb = new StringBuilder();
-			sb.AppendFormat("<div class='result {0}'>", (ResultFlag) ? "even" : "odd" ).AppendLine();
+			sb.AppendFormat("<div class='result {0} {1}'>", (ResultFlag) ? "even" : "odd" , type).AppendLine();
 			sb.AppendFormat("<div class='rSite'>{0} - {1}</div>",ts.Name, te.Name).AppendLine();
 			sb.Append("<div class='clearfix'></div>").AppendLine();
 			if (tm != null) {

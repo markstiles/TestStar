@@ -84,7 +84,11 @@ h3 { font-size:14px; }
 
 /*unit test page style*/
 .UnitTestForm .resultSet { max-height:550px; }
-	.pass { width: 1em; height: 1em; background-color: green; }
-	.fail { width: 1em;height: 1em; background-color: red; }
-	.passLabel { font-size: 1.3em; font-weight: bold; color: green; }
-	.failLabel { font-size: 1.3em; font-weight: bold; color: red; }
+	.odd.pass { background-color: #d4fce0; }
+    .even.pass { background-color: #effcf3; }
+    .odd.fail { background-color: #f1baba; }
+    .even.fail { background-color: #f1cfcf; }
+    .odd.err { background-color: #ffe0af; }
+    .even.err { background-color: #ffeed4; }
+    .odd.skip { background-color: #afbeff; }
+    .even.skip { background-color: #cdd6ff; }
