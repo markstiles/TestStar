@@ -8,7 +8,7 @@ using NUnitTesting.Core.Entities;
 using NUnitTesting.Core.Managers;
 using NUnitTesting.Core.Utility;
 
-namespace NUnitTesting.WebTestLauncher {
+namespace NUnitTesting.TestLauncher.Handlers {
 	public class WebConsoleTestHandler : IWebTestHandler {
 		#region ITestHandler Events
 
@@ -30,10 +30,10 @@ namespace NUnitTesting.WebTestLauncher {
 
 		#endregion ITestHandler Events
 
-		private void WriteMessage(TestMethod tm, TestEnvironment te, TestSite ts, string name, string value){
+		private void WriteMessage(TestMethod tm, TestEnvironment te, TestSite ts, string name, string value) {
 			Console.WriteLine(string.Format("{0} - {1}", ts.Name, te.Name));
 			if (tm != null)
-				Console.WriteLine(string.Format("{0} - ", TestUtility.GetClassName(tm.ClassName)));
+				Console.Write(string.Format("{0} - ", TestUtility.GetClassName(tm.ClassName)));
 			Console.WriteLine(string.Format("{0}{1}{2}", name, (value.Length > 0) ? ": " : string.Empty, value));
 		}
 	}

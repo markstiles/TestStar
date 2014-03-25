@@ -9,9 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTesting.WebTests", "Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTesting.Core", "Libraries\NUnitTesting.Core\NUnitTesting.Core.csproj", "{B80F2278-8EA0-4E89-B5B4-1FF29A981D62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTesting.WebTestLauncher", "Libraries\NUnitTesting.WebTestLauncher\NUnitTesting.WebTestLauncher.csproj", "{7FB1AB18-DF2E-4B4C-BF77-DF4A3E053C7E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTesting.UnitTestLauncher", "Libraries\NUnitTesting.UnitTestLauncher\NUnitTesting.UnitTestLauncher.csproj", "{6533E696-C40D-4DBA-B9F8-2F4971C9D6E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTesting.TestLauncher", "Libraries\NUnitTesting.TestLauncher\NUnitTesting.TestLauncher.csproj", "{6533E696-C40D-4DBA-B9F8-2F4971C9D6E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{B80F2278-8EA0-4E89-B5B4-1FF29A981D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B80F2278-8EA0-4E89-B5B4-1FF29A981D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B80F2278-8EA0-4E89-B5B4-1FF29A981D62}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7FB1AB18-DF2E-4B4C-BF77-DF4A3E053C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7FB1AB18-DF2E-4B4C-BF77-DF4A3E053C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7FB1AB18-DF2E-4B4C-BF77-DF4A3E053C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7FB1AB18-DF2E-4B4C-BF77-DF4A3E053C7E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6533E696-C40D-4DBA-B9F8-2F4971C9D6E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6533E696-C40D-4DBA-B9F8-2F4971C9D6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6533E696-C40D-4DBA-B9F8-2F4971C9D6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU

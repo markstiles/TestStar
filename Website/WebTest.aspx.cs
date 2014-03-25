@@ -179,7 +179,7 @@ namespace NUnitTesting.WebApp {
 			
 			StringBuilder sb = new StringBuilder();
 			sb.Append("@echo off").AppendLine();
-			sb.AppendFormat(@"set TestLauncherPath={0}\{1}.exe", Constants.ExecutionRoot, Constants.DefaultWebTestLauncher).AppendLine().AppendLine();
+			sb.AppendFormat(@"set TestLauncherPath={0}\{1}.exe", Constants.ExecutionRoot, Constants.DefaultTestLauncher).AppendLine().AppendLine();
 			sb.AppendLine("@echo on");
 			
 			foreach (ListItem li in cblTests.Items.Cast<ListItem>().Where(a => a.Selected)) {
@@ -187,7 +187,7 @@ namespace NUnitTesting.WebApp {
 				if(tf == null)
 					continue;
 				//define exe, assembly, test and open environments
-				sb.AppendFormat("\"%TestLauncherPath%\" \"{0}\" \"{1}\" \"", Constants.DefaultWebTestAssembly, TestUtility.GetClassName(tf.ClassName)); 
+				sb.AppendFormat("\"%TestLauncherPath%\" \"-w\" \"{0}\" \"{1}\" \"", Constants.DefaultWebTestAssembly, TestUtility.GetClassName(tf.ClassName)); 
 				foreach(TestEnvironment te in envs){
 					sb.AppendFormat("{0},",te.ID);
 				}

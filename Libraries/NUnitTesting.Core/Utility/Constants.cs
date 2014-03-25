@@ -82,21 +82,15 @@ namespace NUnitTesting.Core.Utility {
 			}
 		}
 
-		public static string DefaultWebTestLauncher {
-			get {
-				return AppSettings["DefaultWebTestLauncher"].Value;
-			}
-		}
-
 		public static string DefaultUnitTestAssembly {
 			get {
 				return AppSettings["DefaultUnitTestAssembly"].Value;
 			}
 		}
 
-		public static string DefaultUnitTestLauncher {
+		public static string DefaultTestLauncher {
 			get {
-				return AppSettings["DefaultUnitTestLauncher"].Value;
+				return AppSettings["DefaultTestLauncher"].Value;
 			}
 		}
 	}

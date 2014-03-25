@@ -101,7 +101,7 @@ namespace NUnitTesting.WebApp {
 
 			StringBuilder sb = new StringBuilder();
 			sb.Append("@echo off").AppendLine();
-			sb.AppendFormat(@"set TestLauncherPath={0}\{1}.exe", Constants.ExecutionRoot, Constants.DefaultUnitTestLauncher).AppendLine().AppendLine();
+			sb.AppendFormat(@"set TestLauncherPath={0}\{1}.exe", Constants.ExecutionRoot, Constants.DefaultTestLauncher).AppendLine().AppendLine();
 			sb.AppendLine("@echo on");
 
 			StringBuilder cats = new StringBuilder();
@@ -112,7 +112,7 @@ namespace NUnitTesting.WebApp {
 			}
 
 			//define exe, assembly, categories and name(blank)
-			sb.AppendFormat("\"%TestLauncherPath%\" \"{0}\" \"{1}\" \"\"", Constants.DefaultUnitTestAssembly, cats.ToString());
+			sb.AppendFormat("\"%TestLauncherPath%\" \"-u\" \"{0}\" \"{1}\" \"\"", Constants.DefaultUnitTestAssembly, cats.ToString());
 			sb.AppendLine().AppendLine("pause");
 
 			//write file

@@ -98,7 +98,9 @@
     <Content Include="data\systems.js" />
     <Content Include="UI\js\jquery-1.11.0.min.js" />
     <Content Include="UI\js\webtests.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
@@ -148,9 +150,9 @@
       <Project>{b80f2278-8ea0-4e89-b5b4-1ff29a981d62}</Project>
       <Name>NUnitTesting.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Libraries\NUnitTesting.UnitTestLauncher\NUnitTesting.UnitTestLauncher.csproj">
+    <ProjectReference Include="..\Libraries\NUnitTesting.UnitTestLauncher\NUnitTesting.TestLauncher.csproj">
       <Project>{6533e696-c40d-4dba-b9f8-2f4971c9d6e1}</Project>
-      <Name>NUnitTesting.UnitTestLauncher</Name>
+      <Name>NUnitTesting.TestLauncher</Name>
     </ProjectReference>
     <ProjectReference Include="..\Libraries\NUnitTesting.UnitTests\NUnitTesting.UnitTests.csproj">
       <Project>{2ff833db-0ad2-42bc-8b24-d584b46fd0b0}</Project>
@@ -159,10 +161,6 @@
     <ProjectReference Include="..\Libraries\NUnitTesting.WebTests\NUnitTesting.WebTests.csproj">
       <Project>{638c839e-656b-44ae-87b4-315cd5b3051a}</Project>
       <Name>NUnitTesting.WebTests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Libraries\NUnitTesting.WebTestLauncher\NUnitTesting.WebTestLauncher.csproj">
-      <Project>{7fb1ab18-df2e-4b4c-bf77-df4a3e053c7e}</Project>
-      <Name>NUnitTesting.TestLauncher</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
