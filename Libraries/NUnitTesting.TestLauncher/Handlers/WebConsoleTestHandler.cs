@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Core;
@@ -12,15 +13,15 @@ namespace NUnitTesting.TestLauncher.Handlers {
 	public class WebConsoleTestHandler : IWebTestHandler {
 		#region ITestHandler Events
 
-		public void OnError(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr) {
+		public void OnError(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr, string requestURL, HttpStatusCode responseStatus) {
 			WriteMessage(tm, te, ts, "Has Errors", tr.Message);
 		}
 
-		public void OnFailure(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr) {
+		public void OnFailure(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr, string requestURL, HttpStatusCode responseStatus) {
 			WriteMessage(tm, te, ts, "Failed", tr.Message);
 		}
 
-		public void OnSuccess(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr) {
+		public void OnSuccess(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr, string requestURL, HttpStatusCode responseStatus) {
 			WriteMessage(tm, te, ts, "Succeeded", string.Empty);
 		}
 

@@ -13,29 +13,14 @@ using NUnitTesting.Core.Tests;
 
 namespace NUnitTesting.WebTests.Tests {
 	[TestFixture, RequiresSTA]
-	public class SitemapTest : BaseWebTest, IHandledTest {
-
-		public override string TestName {
-			get {
-				return "Sitemap Test";
-			}
-		}
+	public class SitemapTest : BaseWebTest {
 
 		public SitemapTest() { }
-		public SitemapTest(TestMethod tm) : base(tm) { }
-
-		#region IWebTest Members
-
-		public void OnSuccess(TestResult tr, ResultSummarizer rs) { }
-
-		public void OnError(TestResult tr, ResultSummarizer rs) {}
-
-		public void OnFailure(TestResult tr, ResultSummarizer rs) {}
-
+		
 		[Test]
-		public void RunTest() {
+		public override void RunTest() {
 
-			string smapPath = string.Format("{0}/{1}", BaseRequestURL, "sitemap.xml");
+			string smapPath = string.Format("{0}/{1}", RequestURL, "sitemap.xml");
 
 			//get the sitemap in some non-error throwing way
 			string smap = string.Empty;
@@ -68,14 +53,13 @@ namespace NUnitTesting.WebTests.Tests {
 						HttpWebRequest req = (HttpWebRequest)WebRequest.Create(child.InnerText);
 						try {
 							HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
-							HttpStatusCode sc = resp.StatusCode;
-							ContextTest.SetProperty(ResponseStatusCodeKey, resp.StatusCode);
+							ResponseStatus = resp.StatusCode;
 							resp.Close();
-							if(!sc.Equals(HttpStatusCode.OK))
-								SetFailure(string.Format("{0} was {1}", child.InnerText, sc.ToString()));
+							if (!ResponseStatus.Equals(HttpStatusCode.OK))
+								SetFailure(string.Format("{0} was {1}", child.InnerText, ResponseStatus.ToString()));
 						} catch (WebException wex) {
 							HttpWebResponse resp = (HttpWebResponse)wex.Response;
-							ContextTest.SetProperty(ResponseStatusCodeKey, (resp != null) ? resp.StatusCode : HttpStatusCode.BadRequest);
+							ResponseStatus = (resp != null) ? resp.StatusCode : HttpStatusCode.BadRequest;
 							SetFailure(string.Format("Sitemap link {0} wasn't found. {1}", child.InnerText, wex.Message));
 						}
 					}
@@ -92,7 +76,5 @@ namespace NUnitTesting.WebTests.Tests {
 			HasFailed = true;
 			Log.Append(message).AppendLine();
 		}
-
-		#endregion
 	}
 }

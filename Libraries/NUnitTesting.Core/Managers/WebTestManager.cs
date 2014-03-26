@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace NUnitTesting.Core.Managers {
 					}
 
 					//set properties to be used during testing
-					tm.SetProperty(BaseWebTest.BaseRequestURLKey, ts.BaseURL(te));
+					tm.SetProperty(BaseWebTest.RequestURLKey, ts.BaseURL(te));
 					tm.SetProperty(BaseWebTest.EnvironmentKey, te);
 					tm.SetProperty(BaseWebTest.SiteKey, ts);
 
@@ -56,16 +57,14 @@ namespace NUnitTesting.Core.Managers {
 			ResultSummarizer summ = new ResultSummarizer(tr);
 
 			Type t = tf.FixtureType;
-			IHandledTest wt = (IHandledTest)Reflect.Construct(t,new object[]{tm});
+			HttpStatusCode status = ((Test)tm).GetProperty<HttpStatusCode>(BaseWebTest.ResponseStatusCodeKey);
+			string requestURL = ((Test)tm).GetProperty<string>(BaseWebTest.RequestURLKey);
 			if (tr.IsError) {
-				wt.OnError(tr, summ);
-				Handler.OnError(tm, te, ts, tr);
+				Handler.OnError(tm, te, ts, tr, requestURL, status);
 			} else if (tr.IsFailure) {
-				wt.OnFailure(tr, summ);
-				Handler.OnFailure(tm, te, ts, tr);
+				Handler.OnFailure(tm, te, ts, tr, requestURL, status);
 			} else if (tr.IsSuccess) {
-				wt.OnSuccess(tr, summ);
-				Handler.OnSuccess(tm, te, ts, tr);
+				Handler.OnSuccess(tm, te, ts, tr, requestURL, status);
 			}
 		}
 	}

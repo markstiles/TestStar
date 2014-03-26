@@ -4,24 +4,18 @@ using NUnitTesting.Core.Entities;
 using NUnitTesting.Core.Extensions;
 
 namespace NUnitTesting.Core.Tests {
-	public class BaseWebTest {
+	public abstract class BaseWebTest {
 
-		public static readonly string BaseRequestURLKey = "BaseRequestURL";
+		public static readonly string RequestURLKey = "BaseRequestURL";
 		public static readonly string ResponseStatusCodeKey = "ResponseStatusCode";
 		public static readonly string EnvironmentKey = "ContextEnvironment";
 		public static readonly string SiteKey = "ContextSite";
 
-		public virtual string TestName {
-			get {
-				return "Base Web Test";
-			}
-		}
-		
 		protected TestMethod CurrentTestMethod;
 
 		protected Test ContextTest {
 			get {
-				return (CurrentTestMethod == null) ? TestExecutionContext.CurrentContext.CurrentTest : CurrentTestMethod;
+				return TestExecutionContext.CurrentContext.CurrentTest;
 			}
 		}
 
@@ -29,11 +23,17 @@ namespace NUnitTesting.Core.Tests {
 			get {
 				return ContextTest.GetProperty<TestEnvironment>(EnvironmentKey);
 			}
+			set {
+				ContextTest.SetProperty(EnvironmentKey, value);
+			}
 		}
 
 		protected TestSite ContextSite {
 			get {
 				return ContextTest.GetProperty<TestSite>(SiteKey);
+			}
+			set {
+				ContextTest.SetProperty(SiteKey, value);
 			}
 		}
 
@@ -41,18 +41,22 @@ namespace NUnitTesting.Core.Tests {
 			get {
 				return ContextTest.GetProperty<HttpStatusCode>(ResponseStatusCodeKey);
 			}
-		}
-
-		protected string BaseRequestURL {
-			get {
-				return ContextTest.GetProperty<string>(BaseRequestURLKey);
+			set {
+				ContextTest.SetProperty(ResponseStatusCodeKey, value);
 			}
 		}
-		
+
+		protected string RequestURL {
+			get {
+				return ContextTest.GetProperty<string>(RequestURLKey);
+			}
+			set {
+				ContextTest.SetProperty(RequestURLKey, value);
+			}
+		}
+
 		public BaseWebTest() { }
 
-		public BaseWebTest(TestMethod tm) {
-			CurrentTestMethod = tm;
-		}	
+		public abstract void RunTest();
 	}
 }

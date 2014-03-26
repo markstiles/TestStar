@@ -21,6 +21,7 @@ using NUnitTesting.Core.Providers;
 using NUnitTesting.Core.Tests;
 using NUnitTesting.Core.Managers;
 using System.IO;
+using System.Net;
 
 namespace NUnitTesting.WebApp {
 	[RequiresSTA]
@@ -214,15 +215,15 @@ namespace NUnitTesting.WebApp {
 		
 		#region ITestHandler Events
 
-		public void OnError(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr){
+		public void OnError(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr, string requestURL, HttpStatusCode responseStatus){
 			Results(ts, te, tm, "Has Errors", tr.Message, "err");
 		}
 
-		public void OnFailure(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr) {
+		public void OnFailure(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr, string requestURL, HttpStatusCode responseStatus) {
 			Results(ts, te, tm, "Failed", tr.Message, "fail");
 		}
 
-		public void OnSuccess(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr) {
+		public void OnSuccess(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr, string requestURL, HttpStatusCode responseStatus) {
 			Results(ts, te, tm, "Succeeded", string.Empty, "pass");
 		}
 

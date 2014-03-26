@@ -150,7 +150,7 @@
       <Project>{b80f2278-8ea0-4e89-b5b4-1ff29a981d62}</Project>
       <Name>NUnitTesting.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Libraries\NUnitTesting.UnitTestLauncher\NUnitTesting.TestLauncher.csproj">
+    <ProjectReference Include="..\Libraries\NUnitTesting.TestLauncher\NUnitTesting.TestLauncher.csproj">
       <Project>{6533e696-c40d-4dba-b9f8-2f4971c9d6e1}</Project>
       <Name>NUnitTesting.TestLauncher</Name>
     </ProjectReference>
