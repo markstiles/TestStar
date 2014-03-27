@@ -66,7 +66,7 @@ namespace NUnitTesting.WebApp {
 
 			h2Env.InnerText = "Edit Environment";
 			TestEnvironment env = GetEnvironment(ddlEnvironments.SelectedValue);
-			hdnEnvID.Value = ddlEnvironments.SelectedValue;
+			hdnEnvID.Value = env.ID.ToString();
 			txtEnvName.Text = env.Name;
 			txtEnvDomain.Text = env.DomainPrefix;
 			txtEnvIP.Text = env.IPAddress;
@@ -140,7 +140,7 @@ namespace NUnitTesting.WebApp {
 
 			h2Sys.InnerText = "Edit System";
 			TestSystem sys = GetSystem(ddlSystems.SelectedValue);
-			hdnSysID.Value = ddlSystems.SelectedValue;
+			hdnSysID.Value = sys.ID.ToString();
 			txtSysName.Text = sys.Name;
 			
 			HideAll();
@@ -202,6 +202,7 @@ namespace NUnitTesting.WebApp {
 			ddlSiteSystems.SelectedValue = "0";
 			hdnSiteProperties.Value = string.Empty;
 			hdnSiteEnvs.Value = string.Empty;
+			cbDisabled.Checked = false;
 
 			HideAll();
 			pnlSite.Visible = true;
@@ -212,13 +213,14 @@ namespace NUnitTesting.WebApp {
 
 			h2Site.InnerText = "Edit Site";
 			TestSite site = GetSite(ddlSites.SelectedValue);
-			hdnSiteID.Value = ddlSites.SelectedValue;
+			hdnSiteID.Value = site.ID.ToString();
 			txtSiteName.Text = site.Name;
 			txtSiteDomain.Text = site.Domain;
 			ddlSiteSystems.SelectedValue = site.SystemID.ToString();
 			hdnSiteProperties.Value = new JavaScriptSerializer().Serialize(site.Properties);
 			hdnSiteEnvs.Value = new JavaScriptSerializer().Serialize(site.Environments);
-			
+			cbDisabled.Checked = site.Disabled;
+
 			HideAll();
 			pnlSite.Visible = true;
 			btnEditSite.Visible = true;
@@ -230,12 +232,14 @@ namespace NUnitTesting.WebApp {
 			} else {
 				TestSite site = new TestSite();
 				site.Name = txtSiteName.Text;
-				txtSiteDomain.Text = site.Domain;
+				site.Domain = txtSiteDomain.Text;
 				site.SystemID = int.Parse(ddlSiteSystems.SelectedValue);
 				site.Properties = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(hdnSiteProperties.Value);
 				site.Environments = new JavaScriptSerializer().Deserialize<IEnumerable<TestEnvironment>>(hdnSiteEnvs.Value);
 				site.ID = Sites.Count;
+				site.Disabled = cbDisabled.Checked; 
 				Sites.Add(site.ID, site);
+			
 				UpdateSites();
 				ResetForm();
 			}
@@ -248,8 +252,9 @@ namespace NUnitTesting.WebApp {
 			site.Domain = txtSiteDomain.Text;
 			site.SystemID = int.Parse(ddlSiteSystems.SelectedValue);
 			site.Properties = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(hdnSiteProperties.Value);
-			site.Environments = new JavaScriptSerializer().Deserialize<IEnumerable<TestEnvironment>>(hdnSiteEnvs.Value);	
-						
+			site.Environments = new JavaScriptSerializer().Deserialize<IEnumerable<TestEnvironment>>(hdnSiteEnvs.Value);
+			site.Disabled = cbDisabled.Checked;
+
 			UpdateSites();
 			ResetForm();
 		}
@@ -271,12 +276,7 @@ namespace NUnitTesting.WebApp {
 
 		#endregion site
 
-		/// <summary>
-		/// TODO need to make sure that when the sites get saved they aren't altered by the local settings like the domain prefix or system. 
-		/// better yet, how to serialize the sites since the sites property is internal. might need to store the system name on the sites after all
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		#region Shared
 
 		protected void btnCancel_Click(object sender, EventArgs e) {
 			ResetForm();
@@ -302,5 +302,7 @@ namespace NUnitTesting.WebApp {
 			btnAddSite.Visible = false;
 			btnEditSite.Visible = false;
 		}
+
+		#endregion Shared
 	}
 }

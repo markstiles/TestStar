@@ -144,7 +144,7 @@ namespace NUnitTesting.TestLauncher {
 			// params 5 = sites 
 			// will look for sites by system unless systems is an empty string then it looks for them by site
 			Dictionary<int, TestSite> Sites = new Dictionary<int, TestSite>();
-			IEnumerable<TestSite> prSites = SiteProvider.GetSites();
+			IEnumerable<TestSite> prSites = SiteProvider.GetEnabledSites();
 			if (args.Length > 4 && !string.IsNullOrEmpty(args[4])) {
 				foreach (string s in GetStrings(args[4])) {
 					foreach (TestSite fsite in prSites.Where(a => a.SystemID.Equals(int.Parse(s)))) {

@@ -112,6 +112,15 @@ namespace NUnitTesting.WebApp {
         protected global::System.Web.UI.WebControls.Button btnShowEditSys;
         
         /// <summary>
+        /// btnRemSys control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRemSys;
+        
+        /// <summary>
         /// Label7 control.
         /// </summary>
         /// <remarks>
@@ -146,6 +155,15 @@ namespace NUnitTesting.WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnShowEditSite;
+        
+        /// <summary>
+        /// btnRemSite control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRemSite;
         
         /// <summary>
         /// pnlEnv control.
@@ -425,6 +443,24 @@ namespace NUnitTesting.WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnSiteEnvs;
+        
+        /// <summary>
+        /// ltlDisabled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ltlDisabled;
+        
+        /// <summary>
+        /// cbDisabled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbDisabled;
         
         /// <summary>
         /// btnEditSite control.

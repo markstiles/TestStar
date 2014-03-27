@@ -125,6 +125,10 @@
                     </div>
                 </div>
                 <div class="formRow vertical">
+                    <asp:Label ID="ltlDisabled" CssClass="title" runat="server" AssociatedControlID="cbDisabled" Text="Disable"></asp:Label>
+                    <asp:CheckBox ID="cbDisabled" runat="server"></asp:CheckBox>
+                </div>
+                <div class="formRow vertical">
                     <asp:Button ID="btnEditSite" CssClass="submit" runat="server" OnClick="btnEditSite_Click" Text="Save" />
                     <asp:Button ID="btnAddSite" CssClass="submit" runat="server" OnClick="btnAddSite_Click" Text="Add" />
                     <asp:Button ID="btnCancelSite" CssClass="submit" runat="server" OnClick="btnCancel_Click" Text="Cancel" />

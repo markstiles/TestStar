@@ -14,6 +14,7 @@ namespace NUnitTesting.Core.Entities {
 		public string Name = string.Empty;
 		public string Domain = string.Empty;
 		public int SystemID = -1;
+		public bool Disabled = false;
 
 		public Dictionary<string, object> Properties;
 		public IEnumerable<TestEnvironment> Environments;
@@ -26,8 +27,8 @@ namespace NUnitTesting.Core.Entities {
 		/// <param name="env"></param>
 		/// <returns></returns>
 		public virtual string BaseURL(TestEnvironment env) {
-			IEnumerable<TestEnvironment> envs = Environments.Where(e => e.Name.Equals(env.Name));
-			if (envs == null || !envs.Any(e => e.Name.Equals(env.Name)))
+			IEnumerable<TestEnvironment> envs = Environments.Where(e => e.ID.Equals(env.ID));
+			if (envs == null || !envs.Any(e => e.ID.Equals(env.ID)))
 				return string.Empty;
 			TestEnvironment te = envs.First();
 			return string.Format("{0}{1}", ((string.IsNullOrEmpty(te.DomainPrefix)) ? env.DomainPrefix : te.DomainPrefix), Domain);

@@ -19,5 +19,13 @@ namespace NUnitTesting.Core.Providers {
 				throw new NullReferenceException("NUnitTesting.Core.SystemProvider.GetSites: Check the file path specified exists and that it's not malformed json.");
 			return sites;
 		}
+
+		public static IEnumerable<TestSite> GetEnabledSites() {
+			return GetSites().Where(a => !a.Disabled);
+		}
+
+		public static IEnumerable<TestSite> GetEnabledSites(string filePath) {
+			return GetSites(filePath).Where(a => !a.Disabled);
+		}
 	}
 }

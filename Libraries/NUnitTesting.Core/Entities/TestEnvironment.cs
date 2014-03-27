@@ -19,7 +19,7 @@ namespace NUnitTesting.Core.Entities {
 		#endregion Constructors
 
 		public override bool Equals(object obj) {
-			return (this.Name.Equals(((TestEnvironment)obj).Name)) ? true : false;
+			return (this.ID.Equals(((TestEnvironment)obj).ID)) ? true : false;
 		}
 	}
 }

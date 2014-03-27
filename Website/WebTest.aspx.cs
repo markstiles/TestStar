@@ -112,7 +112,7 @@ namespace NUnitTesting.WebApp {
 				Environments.Add(t.ID, t);
 			foreach (TestSystem tsys in SystemProvider.GetSystems().OrderBy(a => a.Name))
 				Systems.Add(tsys.ID, tsys);
-			foreach (TestSite ts in SiteProvider.GetSites().OrderBy(a => a.SystemID).ThenBy(a => a.Name)) {
+			foreach (TestSite ts in SiteProvider.GetEnabledSites().OrderBy(a => a.SystemID).ThenBy(a => a.Name)) {
 				try {
 					Sites.Add(ts.ID, ts);
 				} catch (ArgumentException aex) {

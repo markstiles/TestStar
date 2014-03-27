@@ -28,7 +28,7 @@
     $(EnvSubmitSelector).click(function (e) {
         e.preventDefault();
         var eID = $(EnvENameSelector).val();
-        UpdateEnv($(EnvENameSelector + " option[value='" + eID + "']").text(), eID, $(EnvEDomainSelector).val(), $(EnvEIPSelector).val());
+        UpdateEnv($(EnvENameSelector + " option[value='" + eID + "']").text().split(eID + "-").join(""), eID, $(EnvEDomainSelector).val(), $(EnvEIPSelector).val());
         DisplayEnvironments();
         CloseAll();
     });

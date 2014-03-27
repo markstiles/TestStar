@@ -30,7 +30,7 @@ namespace NUnitTesting.Core.Managers {
 				throw new NullReferenceException("Test Method was null. Make sure the class method has the [Test] attribute.");
 			foreach (TestEnvironment te in Environments) {
 				foreach (TestSite ts in Sites) {
-					if (!ts.Environments.Any(en => en.Name.Equals(te.Name))) {
+					if (!ts.Environments.Any(en => en.ID.Equals(te.ID))) {
 						Handler.OnSkipped(tm, te, ts);
 						continue;
 					}
