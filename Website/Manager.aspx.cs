@@ -17,8 +17,8 @@ namespace NUnitTesting.WebApp {
 		protected Dictionary<int, TestSite> Sites;
 
 		protected void Page_Load(object sender, EventArgs e) {
-			Environments = EnvironmentProvider.GetEnvironments().OrderBy(a => a.Name).ToDictionary(a => a.ID);
-			Systems = SystemProvider.GetSystems().OrderBy(a => a.Name).ToDictionary(a => a.ID);
+			Environments = EnvironmentProvider.GetEnvironments().OrderBy(a => a.ID).ToDictionary(a => a.ID);
+			Systems = SystemProvider.GetSystems().OrderBy(a => a.ID).ToDictionary(a => a.ID);
 			Sites = SiteProvider.GetSites().OrderBy(a => a.SystemID).ThenBy(a=>a.Name).ToDictionary(a => a.ID);
 
 			ltlError.Text = string.Empty;
@@ -85,7 +85,7 @@ namespace NUnitTesting.WebApp {
 				env.Name = txtEnvName.Text;
 				env.DomainPrefix = txtEnvDomain.Text;
 				env.IPAddress = txtEnvIP.Text;
-				env.ID = Environments.Count;
+				env.ID = Environments.OrderBy(a => a.Key).Last().Key + 1;
 				Environments.Add(env.ID, env);
 
 				UpdateEnv();
@@ -109,7 +109,7 @@ namespace NUnitTesting.WebApp {
 			foreach (TestSite s in Sites.Values.Where(a => a.Environments.Contains(te)))
 				s.Environments = s.Environments.Where(a => a.ID != te.ID);
 			Environments.Remove(te.ID);
-			UpdateSites();
+			UpdateEnv();
 			ResetForm();
 		}
 
@@ -154,7 +154,7 @@ namespace NUnitTesting.WebApp {
 			} else {
 				TestSystem sys = new TestSystem();
 				sys.Name = txtSysName.Text;
-				sys.ID = Systems.Count;
+				sys.ID = Systems.OrderBy(a => a.Key).Last().Key + 1;
 				Systems.Add(sys.ID, sys);
 				UpdateSys();
 				ResetForm();
@@ -236,7 +236,7 @@ namespace NUnitTesting.WebApp {
 				site.SystemID = int.Parse(ddlSiteSystems.SelectedValue);
 				site.Properties = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(hdnSiteProperties.Value);
 				site.Environments = new JavaScriptSerializer().Deserialize<IEnumerable<TestEnvironment>>(hdnSiteEnvs.Value);
-				site.ID = Sites.Count;
+				site.ID = Sites.OrderBy(a => a.Key).Last().Key + 1;
 				site.Disabled = cbDisabled.Checked; 
 				Sites.Add(site.ID, site);
 			
