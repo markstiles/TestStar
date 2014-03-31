@@ -163,8 +163,9 @@
       <Name>NUnitTesting.WebTests</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="scripts\" />
+    <Content Include="scripts\SampleWebTest.bat" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
