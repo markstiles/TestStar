@@ -1,5 +1,5 @@
 @echo off
-set TestLauncherPath=C:\LOCAL_SYSTEM_PATH\Website\bin\NUnitTesting.WebTestLauncher.exe
+set TestLauncherPath=%0\..\..\bin\NUnitTesting.TestLauncher.exe
 
 @echo on
 "%TestLauncherPath%" "-w" "NUnitTesting.WebTests" "PingTest" "0" "0" ""

@@ -101,7 +101,7 @@ namespace NUnitTesting.WebApp {
 
 			StringBuilder sb = new StringBuilder();
 			sb.Append("@echo off").AppendLine();
-			sb.AppendFormat(@"set TestLauncherPath={0}\{1}.exe", Constants.ExecutionRoot, Constants.DefaultTestLauncher).AppendLine().AppendLine();
+			sb.AppendFormat(@"set TestLauncherPath=%0\..\..\bin\{0}.exe", Constants.DefaultTestLauncher).AppendLine().AppendLine();
 			sb.AppendLine("@echo on");
 
 			StringBuilder cats = new StringBuilder();
