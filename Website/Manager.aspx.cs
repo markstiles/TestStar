@@ -85,7 +85,7 @@ namespace NUnitTesting.WebApp {
 				env.Name = txtEnvName.Text;
 				env.DomainPrefix = txtEnvDomain.Text;
 				env.IPAddress = txtEnvIP.Text;
-				env.ID = Environments.OrderBy(a => a.Key).Last().Key + 1;
+				env.ID = (Environments.Any()) ? Environments.OrderBy(a => a.Key).Last().Key + 1 : 0;
 				Environments.Add(env.ID, env);
 
 				UpdateEnv();
@@ -154,7 +154,7 @@ namespace NUnitTesting.WebApp {
 			} else {
 				TestSystem sys = new TestSystem();
 				sys.Name = txtSysName.Text;
-				sys.ID = Systems.OrderBy(a => a.Key).Last().Key + 1;
+				sys.ID = (Systems.Any()) ? Systems.OrderBy(a => a.Key).Last().Key + 1 : 0;
 				Systems.Add(sys.ID, sys);
 				UpdateSys();
 				ResetForm();
@@ -199,7 +199,8 @@ namespace NUnitTesting.WebApp {
 			hdnSiteID.Value = string.Empty;
 			txtSiteName.Text = string.Empty;
 			txtSiteDomain.Text = string.Empty;
-			ddlSiteSystems.SelectedValue = "0";
+			if(Systems.Any())
+				ddlSiteSystems.SelectedValue = "0";
 			hdnSiteProperties.Value = string.Empty;
 			hdnSiteEnvs.Value = string.Empty;
 			cbDisabled.Checked = false;
@@ -236,7 +237,7 @@ namespace NUnitTesting.WebApp {
 				site.SystemID = int.Parse(ddlSiteSystems.SelectedValue);
 				site.Properties = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(hdnSiteProperties.Value);
 				site.Environments = new JavaScriptSerializer().Deserialize<IEnumerable<TestEnvironment>>(hdnSiteEnvs.Value);
-				site.ID = Sites.OrderBy(a => a.Key).Last().Key + 1;
+				site.ID = (Sites.Any()) ? Sites.OrderBy(a => a.Key).Last().Key + 1 : 0;
 				site.Disabled = cbDisabled.Checked; 
 				Sites.Add(site.ID, site);
 			
