@@ -43,8 +43,10 @@ namespace NUnitTesting.WebApp {
 				ddlSiteSystems.Items.Add(new ListItem(sysName, ksys.Key.ToString()));
 			}
 			ddlSites.Items.Clear();
-			foreach (KeyValuePair<int, TestSite> ksite in Sites)
-				ddlSites.Items.Add(new ListItem(string.Format("{0}-{1}-{2}", ksite.Value.ID, ksite.Value.Name, Systems[ksite.Value.SystemID].Name), ksite.Key.ToString()));
+			foreach (KeyValuePair<int, TestSite> ksite in Sites) {
+				string systemID = (ksite.Value.SystemID == -1) ? "no system" : Systems[ksite.Value.SystemID].Name;
+				ddlSites.Items.Add(new ListItem(string.Format("{0}-{1}-{2}", ksite.Value.ID, ksite.Value.Name, systemID), ksite.Key.ToString()));
+			}
 		}
 
 		#region environment
@@ -217,7 +219,8 @@ namespace NUnitTesting.WebApp {
 			hdnSiteID.Value = site.ID.ToString();
 			txtSiteName.Text = site.Name;
 			txtSiteDomain.Text = site.Domain;
-			ddlSiteSystems.SelectedValue = site.SystemID.ToString();
+			if(site.SystemID != -1)
+				ddlSiteSystems.SelectedValue = site.SystemID.ToString();
 			hdnSiteProperties.Value = new JavaScriptSerializer().Serialize(site.Properties);
 			hdnSiteEnvs.Value = new JavaScriptSerializer().Serialize(site.Environments);
 			cbDisabled.Checked = site.Disabled;
@@ -234,7 +237,8 @@ namespace NUnitTesting.WebApp {
 				TestSite site = new TestSite();
 				site.Name = txtSiteName.Text;
 				site.Domain = txtSiteDomain.Text;
-				site.SystemID = int.Parse(ddlSiteSystems.SelectedValue);
+				if(!string.IsNullOrEmpty(ddlSiteSystems.SelectedValue))
+					site.SystemID = int.Parse(ddlSiteSystems.SelectedValue);
 				site.Properties = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(hdnSiteProperties.Value);
 				site.Environments = new JavaScriptSerializer().Deserialize<IEnumerable<TestEnvironment>>(hdnSiteEnvs.Value);
 				site.ID = (Sites.Any()) ? Sites.OrderBy(a => a.Key).Last().Key + 1 : 0;
