@@ -187,28 +187,26 @@ namespace NUnitTesting.WebApp {
 				TestFixture tf = Fixtures[li.Value];
 				if(tf == null)
 					continue;
-				//define exe, assembly, test and open environments
-				sb.AppendFormat("\"%TestLauncherPath%\" \"-w\" \"{0}\" \"{1}\" \"", Constants.DefaultWebTestAssembly, TestUtility.GetClassName(tf.ClassName));
+				//define exe, assembly and test
+				sb.AppendFormat("\"%TestLauncherPath%\" \"-w\" \"{0}\" \"{1}\"", Constants.DefaultWebTestAssembly, TestUtility.GetClassName(tf.ClassName));
 				StringBuilder envStr = new StringBuilder();
 				foreach (TestEnvironment te in envs) {
 					if (envStr.Length > 0)
 						envStr.Append(",");
 					envStr.AppendFormat("{0}", te.ID);
 				}
-				sb.Append(envStr.ToString());
+				sb.AppendFormat(" \"{0}\"", envStr.ToString());
 
-				//close environments, leave systems blank and open sites
-				sb.Append("\" \"\" \"");
+				//leave systems blank and open sites
+				sb.Append(" \"\"");
 				StringBuilder siteStr = new StringBuilder();
 				foreach (TestSite ts in sites) {
 					if (siteStr.Length > 0)
 						siteStr.Append(",");
 					siteStr.AppendFormat("{0}", ts.ID);
 				}
-				sb.Append(siteStr.ToString());
-
 				//close sites
-				sb.Append("\"").AppendLine();
+				sb.AppendFormat(" \"{0}\"", siteStr.ToString());
 			}
 
 			sb.AppendLine().AppendLine("pause");
