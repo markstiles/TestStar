@@ -10,6 +10,15 @@ using NUnitTesting.Core.Utility;
 using NUnitTesting.TestLauncher.Handlers;
 
 namespace NUnitTesting.TestLauncher {
+
+	public enum ExitCode : int {
+		Success = 0,
+		UnitTestFailed = 2,
+		UnitTestException = 4,
+		WebTestFailed = 8,
+		WebTestException = 16
+	}
+
 	public class Program {
 
 		public static List<string> GetStrings(string param) {

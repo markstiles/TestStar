@@ -15,10 +15,12 @@ namespace NUnitTesting.TestLauncher.Handlers {
 
 		public void OnError(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr, string requestURL, HttpStatusCode responseStatus) {
 			WriteMessage(tm, te, ts, "Has Errors", tr.Message);
+			Environment.Exit((int)ExitCode.WebTestException);
 		}
 
 		public void OnFailure(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr, string requestURL, HttpStatusCode responseStatus) {
 			WriteMessage(tm, te, ts, "Failed", tr.Message);
+			Environment.Exit((int)ExitCode.WebTestFailed);
 		}
 
 		public void OnSuccess(TestMethod tm, TestEnvironment te, TestSite ts, TestResult tr, string requestURL, HttpStatusCode responseStatus) {

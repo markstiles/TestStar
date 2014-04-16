@@ -13,10 +13,12 @@ namespace NUnitTesting.TestLauncher.Handlers {
 
 		public void OnError(TestMethod tm, TestResult tr) {
 			WriteMessage(tm, "Has Errors", tr.Message);
+			Environment.Exit((int)ExitCode.UnitTestException);
 		}
 
 		public void OnFailure(TestMethod tm, TestResult tr) {
 			WriteMessage(tm, "Failed", tr.Message);
+			Environment.Exit((int)ExitCode.UnitTestFailed);
 		}
 
 		public void OnSuccess(TestMethod tm, TestResult tr) {
